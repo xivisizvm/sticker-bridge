@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fbf9f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Sticker Bridge" />
+    <title>Sticker Bridge — stickers, everywhere</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./assets/icon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#home" aria-label="Sticker Bridge home">
+          <span class="brand-mark"><span></span><span></span><span></span><span></span></span>
+          <span>sticker<span class="brand-light">studio</span></span>
+        </a>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="side-nav" aria-label="Main navigation">
+          <a class="nav-item active" href="#home"><span class="nav-icon">⌂</span> Overview</a>
+          <a class="nav-item" href="#recent"><span class="nav-icon">◷</span> Recent stickers <span class="nav-count" id="nav-count">0</span></a>
+          <a class="nav-item" href="#convert"><span class="nav-icon">⇄</span> Move stickers</a>
+        </nav>
+        <div class="sidebar-bottom">
+          <div class="tip-card"><span class="tip-spark">✳</span><strong>A little tip</strong><p>Transparent PNGs keep their crisp edges on Instagram.</p></div>
+          <div class="profile"><div class="avatar">S</div><div><strong>Your studio</strong><small>Personal workspace</small></div><span class="profile-dots">···</span></div>
+        </div>
+      </aside>
+
+      <main id="home" class="main-content">
+        <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> Overview</div><div class="top-actions"><span class="local-badge"><i></i> Saved on this device</span><button class="install-button" id="install-button" hidden>Install app <span>↗</span></button><button class="avatar mini" aria-label="Your profile">S</button></div></header>
+
+        <section class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR STICKER WORKSPACE</div><h1>Stickers, <span>everywhere.</span></h1><p class="intro">Keep your favorites together and get them ready to use in either app.</p></div>
+          <div class="hero-art" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="sticker sticker-sun">✦</span><span class="sticker sticker-heart">♥</span><span class="sticker sticker-smile">☺</span><span class="sparkle">✧</span></div>
+        </section>
+
+        <section id="convert" class="convert-card">
+          <div class="convert-heading"><div><div class="section-kicker">MOVE A STICKER</div><h2>Where does it live now?</h2><p>Pick the app it comes from. We’ll take care of the handoff details.</p></div><div class="step-indicator"><span>01</span><i></i><span>02</span><i></i><span>03</span></div></div>
+          <div class="flow-row">
+            <div class="upload-zone" id="drop-zone" tabindex="0" role="button" aria-label="Choose or drop a sticker file">
+              <input id="file-input" type="file" accept="image/*,.webp,.tgs,.gif" hidden />
+              <div class="upload-icon"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 15.5v3A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              <strong>Choose a sticker image</strong><span>or <em>browse your photos</em></span><small>Pick the sticker image you want to bring over</small>
+            </div>
+            <div class="flow-arrow" aria-hidden="true"><span>→</span></div>
+            <div class="target-panel"><div class="target-label">STICKER IS IN</div><div class="target-choice"><button class="platform selected" data-source="instagram"><span class="platform-icon insta">◎</span><span><strong>Instagram</strong><small>Saved sticker tray</small></span><span class="radio"></span></button><button class="platform" data-source="whatsapp"><span class="platform-icon wa">◔</span><span><strong>WhatsApp</strong><small>Sticker tray or pack</small></span><span class="radio"></span></button></div><div class="destination"><span>GOING TO</span><strong id="destination-name">◔ WhatsApp</strong></div><button id="convert-btn" class="primary-button" disabled><span>Prepare handoff</span><span class="button-arrow">↗</span></button><div class="privacy-note"><span>♧</span> Your stickers stay on this device</div></div>
+          </div>
+          <div class="selected-file" id="selected-file" hidden><span class="file-check">✓</span><span id="file-name">sticker.webp</span><span id="file-size"></span><button id="remove-file" aria-label="Remove selected file">×</button></div>
+          <div class="bridge-note"><span class="bridge-note-icon">i</span><p><strong>A quick heads-up</strong> Sticker trays are private to Instagram and WhatsApp, so this app can’t read them directly. Choose the original sticker image here, then follow the app’s add or share step.</p></div>
+          <div id="conversion-result" class="conversion-result" hidden></div>
+        </section>
+
+        <section class="recent-section" id="recent"><div class="section-head"><div><div class="section-kicker">YOUR LIBRARY</div><h2>Recent stickers <span class="result-total" id="recent-total">0</span></h2></div><div class="library-actions"><label class="search-box"><span>⌕</span><input id="search-input" type="search" placeholder="Find a sticker" aria-label="Search recent stickers" /></label><button class="filter-button" id="filter-button"><span>☷</span> All stickers <span class="chevron">⌄</span></button></div></div>
+          <div class="sticker-grid" id="sticker-grid"></div>
+          <div class="empty-state" id="empty-state"><div class="empty-illustration"><span>☺</span><i>✦</i></div><strong>Your sticker shelf is ready</strong><p>Copies you prepare will stay here on this device.</p><button class="text-button" id="empty-upload">Choose a sticker image <span>↗</span></button></div>
+          <div class="no-results" id="no-results" hidden>No stickers match that search.</div>
+        </section>
+        <footer><span>Made for your everyday reactions</span><span><i class="footer-dot"></i> Private by design</span></footer>
+      </main>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>

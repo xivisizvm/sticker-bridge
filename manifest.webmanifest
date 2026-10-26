@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "Sticker Bridge",
+  "short_name": "Sticker Bridge",
+  "description": "Keep sticker copies together and prepare a handoff between apps.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fbf9f6",
+  "theme_color": "#fbf9f6",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
